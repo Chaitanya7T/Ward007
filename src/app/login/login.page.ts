@@ -84,7 +84,6 @@ export class LoginPage implements OnInit {
     }
     this.kavaludhal.post(config).subscribe(data => {
       this.loader.stopLoader();
-      console.log(data,"data");
       if (data.data) {
         this.userService.setUser(data.data).then(data =>{
           this.router.navigate(['menu/home']);

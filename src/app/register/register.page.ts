@@ -24,7 +24,7 @@ export class RegisterPage implements OnInit {
     type: "text",
     label: 'Full name',
     required: true,
-    name: 'fullName',
+    name: 'name',
     value: '',
     icons: []
   },
@@ -40,8 +40,8 @@ export class RegisterPage implements OnInit {
   {
     type: "text",
     label: 'Email id',
-    required: true,
-    name: 'email_id',
+    required: false,
+    name: 'email',
     pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
     value: '',
     icons: []

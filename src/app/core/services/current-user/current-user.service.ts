@@ -12,7 +12,7 @@ export class CurrentUserService {
     return new Promise((resolve, reject) => {
       this.storage.setLocalStorage('userDetails', data).then(success => {
         console.log(success,"success")
-        resolve();
+        resolve(data);
       }).catch(error => {
         reject(error)
       })
@@ -39,14 +39,14 @@ export class CurrentUserService {
       })
     })
   }
-  getAccessToken(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.storage.getLocalStorage('userDetails').then(data => {
-        data ? resolve(data) : resolve()
-      }).catch(error => {
-        resolve()
-      })
-    })
-  }
+  // getAccessToken(): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     this.storage.getLocalStorage('userDetails').then(data => {
+  //       data ? resolve(data) : resolve()
+  //     }).catch(error => {
+  //       resolve()
+  //     })
+  //   })
+  // }
 
 }
