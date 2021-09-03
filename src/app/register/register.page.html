@@ -1,0 +1,36 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-content class="ion-padding">
+
+ <app-logo> </app-logo>
+
+  <form [formGroup]="register" novalidate class="login">
+    <div class="form-fields" *ngFor="let field of fields">
+      <ion-item>
+        <ion-label position="floating">{{field.label | translate}}
+          <span *ngIf="field.required" class="required-field"> * </span>
+        </ion-label>
+        <ion-icon name="{{icon.name}}" slot="{{icon.slot}}" *ngFor="let icon of field.icons"
+          [ngClass]="{'start-slot':icon.slot=='start', 'patternMatch' : icon.slot == 'end' && field.patternMatch}">
+        </ion-icon>
+        <ion-input type="{{field.type}}" [formControlName]="field.name" placeholder={{field.placeholder}}
+          (ionChange)="checkPattern(field)" value={{field.value}} [(ngModel)]="field.value"> </ion-input>
+      </ion-item>
+      <ng-container>
+        <span class="required-field"
+          *ngIf="(field?.required && register.controls[field.name].touched  && register.controls[field.name].errors?.required) ">
+          {{field.label | translate}} is required.
+        </span>
+        <span *ngIf="field.value && field.pattern && !field.patternMatch" class="required-field">
+          Please enter valid {{field.label | translate}}.
+        </span>
+      </ng-container>
+    </div>
+    <ion-button (click)="doRegister()" expand="block" [disabled]="!register.valid">
+      Register</ion-button>
+      <p (click)="goToLogin()" class="registerLabel">Already created a Account? Click here to Login. </p>
+  </form>
+</ion-content>

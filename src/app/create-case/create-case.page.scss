@@ -1,0 +1,20 @@
+.form-fields{
+    margin-bottom: 20px;
+}
+.img-block{
+    display: flex;
+    .icon-trash{
+        color: red;
+    float: right;
+    margin-bottom: -10px;
+    margin-right: -10px;
+    position: relative;
+    }
+    img{
+        width: 75px;
+        height: auto;
+    }
+    p{
+        text-align: center;
+    }
+}
