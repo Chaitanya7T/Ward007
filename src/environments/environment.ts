@@ -1,7 +1,5 @@
 
-const apiBaseUrl = "https://minalba.live/"
-// const apiBaseUrl = "dev.api.shikshalokam.org/"
-
+const apiBaseUrl = ""
 export const environment = {
   apiBaseUrl: apiBaseUrl,
   production: false,

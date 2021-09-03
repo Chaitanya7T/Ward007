@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms"
 
 import {TranslateStore} from '@ngx-translate/core';
 import { Location } from '@angular/common';
+import { CurrentUserService } from '../core/services/current-user/current-user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -38,10 +39,12 @@ export class LoginPage implements OnInit {
     private kavaludhal: Kavaludhala,
     private toastServiceService: ToastServiceService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private userService : CurrentUserService
 
   ) {
     translate.defaultLang ='en';
+    console.log('in login');
   }
 
   ngOnInit() {
@@ -66,14 +69,6 @@ export class LoginPage implements OnInit {
           Validators.required
         );
       }
-
-      // IF required enable patterns
-
-      // if (res.pattern) {
-      //   validationsArray.push(
-      //     Validators.pattern(new RegExp(res.pattern))
-      //   );
-      // }
       controls[res.name] = new FormControl('', validationsArray);
     });
     this.login = new FormGroup(
@@ -82,24 +77,25 @@ export class LoginPage implements OnInit {
   }
 
   doLogin() {
-    // this.loader.startLoader('Please wait, loading');
+    this.loader.startLoader('Please wait, loading');
     const config = {
       url: urlConstants.API_URLS.LOGIN,
       payload: this.login.value
     }
-    // this.kavaludhal.post(config).subscribe(data => {
-    //   this.loader.stopLoader();
-    //   console.log(data,"data");
-    //   if (data) {
-      
-    //   } else {
-    //     this.toastServiceService.displayMessage('Something went wrong.', 'danger');
-    //   }
-    // }, error => {
-    //   this.toastServiceService.displayMessage('Something went wrong, please try again later', 'danger');
-    //   this.loader.stopLoader();
-    // })
-    this.router.navigate(['menu/home']);
+    this.kavaludhal.post(config).subscribe(data => {
+      this.loader.stopLoader();
+      console.log(data,"data");
+      if (data.data) {
+        this.userService.setUser(data.data).then(data =>{
+          this.router.navigate(['menu/home']);
+        })
+      } else {
+        this.toastServiceService.displayMessage('Something went wrong.', 'danger');
+      }
+    }, error => {
+      this.toastServiceService.displayMessage('Something went wrong, please try again later', 'danger');
+      this.loader.stopLoader();
+    })
   }
 
   goToRegister(){

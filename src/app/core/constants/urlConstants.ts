@@ -1,10 +1,10 @@
 export const urlConstants = {
     SERVICES: {
-        APP: 'api/'
+        APP: 'kavaludhala/api/'
     },
     API_URLS: {
-        LOGIN: '',
-        REGISTER:'',
+        LOGIN: 'auth/login',
+        REGISTER:'register',
         CREATE_CASE:'',
         GET_CASE:''
     }

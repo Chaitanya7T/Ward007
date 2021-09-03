@@ -6,6 +6,6 @@
     "MESSAGES": {
         "PLEASE_FILL_ALL_FIELDS": "Please fill the all mandatory fields.",
         "PLEASE_WAIT_SENDING_OTP": "Please wait sending otp.",
-        "PLEASE_CHECK_NETWORK": "Please check your internet connection",
+        "PLEASE_CHECK_NETWORK": "Please check your internet connection"
     }
 }

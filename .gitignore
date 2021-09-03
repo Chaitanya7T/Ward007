@@ -9,6 +9,7 @@ package-lock.json
 coverage/
 dist/
 node_modules/
+plugins/
 tmp/
 temp/
 hooks/
