@@ -88,8 +88,9 @@ export class LoginPage implements OnInit {
         this.userService.setUser(data.data).then(data =>{
           this.router.navigate(['menu/home']);
         })
+        this.toastServiceService.displayMessage(data.message, 'danger');
       } else {
-        this.toastServiceService.displayMessage('Something went wrong.', 'danger');
+        this.toastServiceService.displayMessage(data.message, 'danger');
       }
     }, error => {
       this.toastServiceService.displayMessage('Something went wrong, please try again later', 'danger');

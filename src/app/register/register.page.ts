@@ -115,10 +115,10 @@ export class RegisterPage implements OnInit {
           this.router.navigate(['menu/home']);
         })
       } else {
-        this.toastServiceService.displayMessage('Something went wrong.', 'danger');
+        this.toastServiceService.displayMessage(data.message, 'danger');
       }
     }, error => {
-      this.toastServiceService.displayMessage('Something went wrong, please try again later', 'danger');
+      this.toastServiceService.displayMessage(error.message, 'danger');
       this.loader.stopLoader();
     })
   }

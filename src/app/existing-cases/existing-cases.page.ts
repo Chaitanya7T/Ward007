@@ -75,7 +75,7 @@ public getCasesList(serchQury:string){
         this.casesList = data.data;
       } else {
         this.toastServiceService.displayMessage(
-          "Something went wrong.",
+          data.message,
           "danger"
         );
       }
