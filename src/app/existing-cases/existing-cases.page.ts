@@ -7,7 +7,7 @@ import {
   urlConstants,
 } from "../core";
 import { CaseDetailsPage } from "./case-details/case-details.page";
-import { Cases } from "./cases";
+import { Case } from "./cases";
 @Component({
   selector: "app-existing-cases",
   templateUrl: "./existing-cases.page.html",
@@ -15,25 +15,42 @@ import { Cases } from "./cases";
 })
 export class ExistingCasesPage implements OnInit {
   showMenu: boolean = false;
-  casesList: Cases[] = [
+  casesList: Case[] = [
     {
-      name: "MKJ",
-      date: "10/20/21",
-      description:
-        "asadsdf ssfffffffffffffffff ffffffffffff ffff sds    asadsdf ssfffffffffffffffff ffffffffffff ffff sdsdff asadsdf ssfffffffffffffffff ffffffffffff ffff sds   dff dff    fdssds",
-      id: "123",
-      mobileNumber: "122345",
-      vehicleNumber: "1234",
-    },
-    {
-      name: "MKJMs",
-      date: "10/20/21",
-      description: "asadsdf",
-      id: "123",
-      mobileNumber: "122345",
-      vehicleNumber: "1234",
-    },
-  ];
+        "status": "submit",
+        "_id": "6133385b57232d04b7294322",
+        "name": "rocky",
+        "vehicle_number": "KA 15 l 2345",
+        "description": "req.body.description",
+        "id_proof": {
+            "front": {
+                "type": "png",
+                "path": "8_2021/airp0m1fhykt5khmdf_front.png",
+                "image": "https://kavaludahala.in/images/8_2021/airp0m1fhykt5khmdf_front.png"
+            },
+            "back": {
+                "type": "png",
+                "path": "8_2021/airp0m1fhykt5khmdg_back.png",
+                "image": "https://kavaludahala.in/images/8_2021/airp0m1fhykt5khmdg_back.png"
+            }
+        },
+        "mobile_number": "123434534",
+        "createdBy": "61324d323316fdf0dc131f68",
+        "suspect_photo": {
+            "type": "png",
+            "path": "8_2021/airp0m1fhykt5khmdi_suspect_photo.png",
+            "image": "https://kavaludahala.in/images/8_2021/airp0m1fhykt5khmdi_suspect_photo.png"
+        },
+        "vehicle_photo": {
+            "type": "png",
+            "path": "8_2021/airp0m1fhykt5khmdh_vehicle_photo.png",
+            "image": "https://kavaludahala.in/images/8_2021/airp0m1fhykt5khmdh_vehicle_photo.png"
+        },
+        "date": "2021-09-04T09:11:55.014Z",
+        "createdAt": "2021-09-04T09:11:55.018Z",
+        "updatedAt": "2021-09-04T09:11:55.018Z"
+    }
+];
 
   constructor(
     private modalCtrl: ModalController,
@@ -69,11 +86,11 @@ export class ExistingCasesPage implements OnInit {
       }
     );
   }
-  viewDetails(cases: Cases) {
+  viewDetails(cases: Case) {
     this.modalCtrl
       .create({
         component: CaseDetailsPage,
-        componentProps: { cases: cases },
+        componentProps: { case: cases },
       })
       .then((modalres) => {
         modalres.present();
