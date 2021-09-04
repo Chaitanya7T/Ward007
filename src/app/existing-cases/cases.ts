@@ -1,16 +1,26 @@
-export interface Cases{
-id:string,
-name :string,
-mobileNumber :string,
-description:string,
-date:string  ,
-vehicleNumber:string,
-idProof?: IdProof,
-suspectPhoto?:string,
-vehiclePhoto?: string,
+export interface Case {
+  _id: string;
+  name: string;
+  mobile_number: string;
+  createdBy?:string;
+  description: string;
+  date: string;
+  vehicle_number: string;
+  id_proof?: IdProof;
+  suspect_photo?: Image;
+  vehicle_photo?: Image;
+  status?:string;
+  createdAt:string;
+  updatedAt:string;
 }
 
-interface IdProof{
-    front: string,
-    back : string
-    }
+interface IdProof {
+  front: Image;
+  back: Image;
+}
+
+interface Image {
+  type: string;
+  path: string;
+  image: string;
+}
