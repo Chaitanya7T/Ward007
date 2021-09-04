@@ -6,6 +6,10 @@
 
 <ion-content class="ion-padding">
   <app-logo> </app-logo>
+  <ion-searchbar
+  (ionChange)="onSearchInput($event)"
+  debounce="2000"
+  ></ion-searchbar>
   <ion-card *ngFor="let case of casesList" (click)="viewDetails(case)">
     <ion-card-header >
       <ion-card-title>{{case.name}}</ion-card-title>
