@@ -15,4 +15,6 @@
       >
     </ion-card-header>
   </ion-card>
+  <ion-button (click)="loadMore()" expand="block" *ngIf="casesList?.length > 0 && curentCount > casesList?.length">
+    Load More</ion-button>
 </ion-content>

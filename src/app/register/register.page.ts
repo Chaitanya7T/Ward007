@@ -114,6 +114,7 @@ export class RegisterPage implements OnInit {
         this.userService.setUser(data.data).then(data =>{
           this.router.navigate(['menu/home']);
         })
+        this.toastServiceService.displayMessage(data.message, 'success');
       } else {
         this.toastServiceService.displayMessage(data.message, 'danger');
       }

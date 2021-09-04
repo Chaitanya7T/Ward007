@@ -51,6 +51,7 @@ export class ExistingCasesPage implements OnInit {
         "updatedAt": "2021-09-04T09:11:55.018Z"
     }
 ];
+public curentCount:number;
 
   constructor(
     private modalCtrl: ModalController,
@@ -65,12 +66,17 @@ export class ExistingCasesPage implements OnInit {
   }
 public getCasesList(serchQury:string){
   this.loader.startLoader("Please wait, loading");
+  let apiUrl = urlConstants.API_URLS.GET_CASE;
+  if(serchQury){
+    apiUrl=  `${urlConstants.API_URLS.GET_CASE}?search=${serchQury}&pageNo=1&pageSize=1`
+  }
   const config = {
-    url: `${urlConstants.API_URLS.GET_CASE}${serchQury}&pageNo=1&pageSize=1`,
+    url: apiUrl,
   };
   this.kavaludhal.get(config).subscribe(
     (data) => {
       this.loader.stopLoader();
+      this.curentCount = data?.count || 0;
       if (data.data) {
         this.casesList = data.data;
       } else {
@@ -82,7 +88,7 @@ public getCasesList(serchQury:string){
     },
     (error) => {
       this.toastServiceService.displayMessage(
-        "Something went wrong, please try again later",
+        error.message,
         "danger"
       );
       this.loader.stopLoader();
