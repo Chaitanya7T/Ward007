@@ -6,4 +6,13 @@
 
 <ion-content class="ion-padding">
   <app-logo> </app-logo>
+  <ion-card *ngFor="let cases of casesList">
+    <ion-card-header (click)="viewDetails(cases)">
+      <ion-card-title>{{cases.name}}</ion-card-title>
+      <ion-card-subtitle
+        >Mobile number: {{cases.mobileNumber}}
+        <span class="date">{{cases.date}}</span></ion-card-subtitle
+      >
+    </ion-card-header>
+  </ion-card>
 </ion-content>

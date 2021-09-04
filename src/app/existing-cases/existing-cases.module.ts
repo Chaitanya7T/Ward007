@@ -9,6 +9,7 @@ import { ExistingCasesPage } from './existing-cases.page';
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { CaseDetailsPageModule } from './case-details/case-details.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +18,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     IonicModule,
     CoreModule,
     SharedModule,
-    ExistingCasesPageRoutingModule
+    ExistingCasesPageRoutingModule,
+    CaseDetailsPageModule
   ],
   declarations: [ExistingCasesPage]
 })
