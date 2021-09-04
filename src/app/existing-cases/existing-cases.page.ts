@@ -61,31 +61,35 @@ export class ExistingCasesPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loader.startLoader("Please wait, loading");
-    const config = {
-      url: urlConstants.API_URLS.GET_CASE,
-    };
-    this.kavaludhal.get(config).subscribe(
-      (data) => {
-        this.loader.stopLoader();
-        if (data.data) {
-          this.casesList = data.data;
-        } else {
-          this.toastServiceService.displayMessage(
-            "Something went wrong.",
-            "danger"
-          );
-        }
-      },
-      (error) => {
+   this.getCasesList('');
+  }
+public getCasesList(serchQury:string){
+  this.loader.startLoader("Please wait, loading");
+  const config = {
+    url: `${urlConstants.API_URLS.GET_CASE}${serchQury}&pageNo=1&pageSize=1`,
+  };
+  this.kavaludhal.get(config).subscribe(
+    (data) => {
+      this.loader.stopLoader();
+      if (data.data) {
+        this.casesList = data.data;
+      } else {
         this.toastServiceService.displayMessage(
-          "Something went wrong, please try again later",
+          "Something went wrong.",
           "danger"
         );
-        this.loader.stopLoader();
       }
-    );
-  }
+    },
+    (error) => {
+      this.toastServiceService.displayMessage(
+        "Something went wrong, please try again later",
+        "danger"
+      );
+      this.loader.stopLoader();
+    }
+  );
+}
+
   viewDetails(cases: Case) {
     this.modalCtrl
       .create({
