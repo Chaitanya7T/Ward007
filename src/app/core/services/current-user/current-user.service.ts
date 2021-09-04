@@ -19,6 +19,17 @@ export class CurrentUserService {
     })
   }
 
+  getToken():Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.storage.getLocalStorage('userDetails').then(data => {
+        console.log(data,"data 143")
+        resolve(data.token);
+      }).catch(error => {
+        reject()
+      })
+    })
+  }
+
   getUser(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.storage.getLocalStorage('userDetails').then(data => {

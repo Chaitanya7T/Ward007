@@ -66,7 +66,7 @@ export class AttachmentService {
         //   },
         // },
         {
-          text:"Cancel",
+          text: "Cancel",
           role: "cancel",
         },
       ],
@@ -81,24 +81,32 @@ export class AttachmentService {
       sourceType: sourceType,
       saveToPhotoAlbum: false,
       correctOrientation: true,
+      destinationType : this.camera.DestinationType.DATA_URL
     };
 
     this.camera
       .getPicture(options)
       .then((imagePath) => {
         if (this.platform.is("android") && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
-          this.filePath
-            .resolveNativePath(imagePath)
-            .then((filePath) => {
-              this.copyFile(filePath);
-            })
+          let payload ={
+            value:imagePath,
+            type:'png'
+          }
+          console.log(payload,"payload");
+          this.actionSheetController.dismiss(payload);
+          // return payload
         } else {
-          this.copyFile(imagePath);
+          let payload ={
+            value:imagePath,
+            type:'png'
+          }
+          console.log(payload,"payload");
+          this.actionSheetController.dismiss(payload);
         }
       })
       .catch((err) => {
         console.log(err);
-        if(err !== "No Image Selected") {
+        if (err !== "No Image Selected") {
           this.presentToast("Error While storing");
         }
       });
@@ -110,8 +118,6 @@ export class AttachmentService {
         const data = {
           name: newFileName,
           type: this.mimeType(newFileName),
-          isUploaded: false,
-          url: "",
         };
 
         this.presentToast("Succesfully added", "success");
@@ -143,15 +149,13 @@ export class AttachmentService {
         const data = {
           name: newFileName,
           type: this.mimeType(newFileName),
-          isUploaded: false,
-          url: "",
         };
 
         this.presentToast("Succesfully added", "success");
         this.actionSheetController.dismiss(data);
       }
     } catch (error) {
-       this.presentToast("Error While storing");
+      this.presentToast("Error While storing");
     }
 
     // non working code for sdk30-android 11

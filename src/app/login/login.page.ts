@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
       type: "text",
       label: 'Username',
       required: true,
-      name: 'username',
+      name: 'mobile_number',
       placeholder:'Username',
       value: '',
       icons: []

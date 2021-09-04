@@ -8,10 +8,13 @@ import {
 import { Observable, from } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../../core/services/auth/auth.service';
+import { CurrentUserService } from '../services/current-user/current-user.service';
+import { urlConstants } from '../constants';
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
     constructor(
-        private auth: AuthService
+        private auth: AuthService,
+        private currentUserService: CurrentUserService
     ) {
     }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -21,15 +24,33 @@ export class ApiInterceptor implements HttpInterceptor {
     async handle(req: HttpRequest<any>, next: HttpHandler) {
         let authReq;
         // send skip param as true in header to disable headers
-        if (!req.headers.get("skip") || req.headers.get("skip") === 'false') {
-            authReq = req.clone({
-                setHeaders: {
-                    
-                }
+        if (req.url.indexOf(urlConstants.API_URLS.LOGIN) === -1 && req.url.indexOf(urlConstants.API_URLS.REGISTER) === -1) {
+            let token;
+            await this.currentUserService.getToken().then(token=>{
+               token = token;
+               if (token) {
+                authReq = req.clone({
+                     setHeaders: {
+                        'x-access-token' :token
+                     }
+                 })
+             }
+            return next.handle(authReq).toPromise()
             })
+        //    this.currentUserService.getToken().then(token=>{
+            if (token) {
+               authReq = req.clone({
+                    setHeaders: {
+                       'x-access-token' :token
+                    }
+                })
+            }
+                
+            // })
+           
         } else {
             authReq = req.clone({
-                headers: req.headers.delete('skip')
+                headers: req.headers.delete('x-access-token')
             })
         }
         return next.handle(authReq).toPromise()

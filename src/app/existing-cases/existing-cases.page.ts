@@ -15,25 +15,7 @@ import { Cases } from "./cases";
 })
 export class ExistingCasesPage implements OnInit {
   showMenu: boolean = false;
-  casesList: Cases[] = [
-    {
-      name: "MKJ",
-      date: "10/20/21",
-      description:
-        "asadsdf ssfffffffffffffffff ffffffffffff ffff sds    asadsdf ssfffffffffffffffff ffffffffffff ffff sdsdff asadsdf ssfffffffffffffffff ffffffffffff ffff sds   dff dff    fdssds",
-      id: "123",
-      mobileNumber: "122345",
-      vehicleNumber: "1234",
-    },
-    {
-      name: "MKJMs",
-      date: "10/20/21",
-      description: "asadsdf",
-      id: "123",
-      mobileNumber: "122345",
-      vehicleNumber: "1234",
-    },
-  ];
+  casesList =[];
 
   constructor(
     private modalCtrl: ModalController,

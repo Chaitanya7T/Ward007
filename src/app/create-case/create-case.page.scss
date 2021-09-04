@@ -5,14 +5,21 @@
     display: flex;
     .icon-trash{
         color: red;
-    float: right;
-    margin-bottom: -10px;
-    margin-right: -10px;
-    position: relative;
+        float: right;
+        font-size: 16px;
+        margin-bottom: -8px;
+        margin-right: -6px;
+        position: relative;
+        margin-top: -22px;
+        z-index: 9;
+        border-radius: 1px solid #fff;
+        background: #fff;
     }
     img{
-        width: 75px;
-        height: auto;
+    height: 80px;
+    position: relative;
+    width: 100%;
+    margin-top: -22px;
     }
     p{
         text-align: center;
@@ -23,9 +30,12 @@
     border: 1px solid black;
     color: black;
     height: 6em;
-    width: 6em;
-    margin: 1em;
-    text-align:center
+    text-align: center;
+    margin: 2px;
+    padding: 3px;
+    font-size: 13px;
+    padding-top: 20px;
+    width: 25%;
 }
 .icon-trash{
     margin-top: -5px;
