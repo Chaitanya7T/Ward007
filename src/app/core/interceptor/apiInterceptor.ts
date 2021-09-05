@@ -34,15 +34,7 @@ export class ApiInterceptor implements HttpInterceptor {
                      }
                  })
              }
-            return next.handle(authReq).toPromise()
             })
-            if (token) {
-               authReq = req.clone({
-                    setHeaders: {
-                       'x-access-token' :token
-                    }
-                })
-            }
         } else {
             authReq = req.clone({
                 headers: req.headers.delete('x-access-token')

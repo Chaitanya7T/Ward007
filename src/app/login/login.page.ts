@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
       value: '',
       icons: []
     },{
-    type: "text",
+    type: "password",
     label: 'Password',
     required: true,
     name: 'password',
@@ -95,7 +95,6 @@ export class LoginPage implements OnInit {
     }, error => {
       this.loader.stopLoader();
       this.toastServiceService.displayMessage("Incorrect username or password", 'danger');
-     
     })
   }
 
