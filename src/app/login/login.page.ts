@@ -93,8 +93,9 @@ export class LoginPage implements OnInit {
         this.toastServiceService.displayMessage(data.message, 'danger');
       }
     }, error => {
-      this.toastServiceService.displayMessage(error.message, 'danger');
       this.loader.stopLoader();
+      this.toastServiceService.displayMessage("Incorrect username or password", 'danger');
+     
     })
   }
 

@@ -125,7 +125,7 @@ private alertController : AlertController
   createCase() {
     if(this.suspectImg && this.front && this.back &&  this.vehicleImg) {
       console.log(this.create.value, "this.create");
-      // this.loader.startLoader('Please wait, loading');
+       this.loader.startLoader('Please wait, loading');
       let suspect ={
         value : this.suspectImg,
         type :'png'
