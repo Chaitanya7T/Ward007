@@ -33,7 +33,7 @@ export class ApiService {
     console.log(environment.apiBaseUrl + this.baseUrl + requestParam.url, "environment.apiBaseUrl + this.baseUrl + requestParam.url");
     return this.http.post(environment.apiBaseUrl + this.baseUrl + requestParam.url, requestParam.payload).pipe(
       tap(data => {
-        return data
+        return data;
       }, error => {
         console.log(error.error,"error 56");
         return error.error

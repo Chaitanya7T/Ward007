@@ -8,17 +8,17 @@
   <app-logo> </app-logo>
   <ion-searchbar
   (ionChange)="onSearchInput($event)"
-  debounce="2000"
+  debounce="500"
   ></ion-searchbar>
   <ion-card *ngFor="let case of casesList" (click)="viewDetails(case)">
     <ion-card-header >
       <ion-card-title>{{case.name}}</ion-card-title>
       <ion-card-subtitle
-        >Mobile number: {{case.mobile_number}} 
+        >Mobile : {{case.mobile_number}} 
         <span class="date">{{case.date | date:'short'}}</span></ion-card-subtitle
       >
     </ion-card-header>
   </ion-card>
-  <ion-button (click)="loadMore()" expand="block" *ngIf="casesList?.length > 0 && curentCount > casesList?.length">
+  <ion-button (click)="loadMore()" expand="block" *ngIf="casesList?.length > 0 && currentCount > casesList?.length">
     Load More</ion-button>
 </ion-content>

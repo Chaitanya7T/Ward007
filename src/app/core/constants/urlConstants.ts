@@ -5,7 +5,7 @@ export const urlConstants = {
     API_URLS: {
         LOGIN: 'v1/auth/login',
         REGISTER:'v1/auth/register',
-        CREATE_CASE:'',
-        GET_CASE:'v1/complaints/list'
+        CREATE_CASE:'v1/complaints/create',
+        GET_CASE:'v1/complaints/list?search='
     }
 };

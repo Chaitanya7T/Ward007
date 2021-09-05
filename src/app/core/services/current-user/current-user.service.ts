@@ -22,7 +22,7 @@ export class CurrentUserService {
   getToken():Promise<any> {
     return new Promise((resolve, reject) => {
       this.storage.getLocalStorage('userDetails').then(data => {
-        resolve(data.token|| null);
+        resolve(data.token);
       }).catch(error => {
         reject()
       })
@@ -32,7 +32,6 @@ export class CurrentUserService {
   getUser(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.storage.getLocalStorage('userDetails').then(data => {
-        console.log(data,"data 123")
         resolve(data);
       }).catch(error => {
         reject()

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoaderService, Kavaludhala, urlConstants, ToastServiceService, AttachmentService } from '../core';
-import {TranslateStore} from '@ngx-translate/core';
-
+import { TranslateStore } from '@ngx-translate/core';
+import {Http, Headers} from '@angular/http';
+import { CurrentUserService } from '../core/services/current-user/current-user.service';
+import { AlertController } from "@ionic/angular";
 @Component({
   selector: 'app-create-case',
   templateUrl: './create-case.page.html',
@@ -13,8 +15,14 @@ export class CreateCasePage implements OnInit {
   create: FormGroup;
   showMenu: boolean = false;
   idProof;
+  front;
+  back;
+  suspectImg;
   vehicleImg;
-  suspectImg
+  frontPreview;
+  suspectPreview
+  backPreview
+  vehiclePreview
   fields = [
     {
       type: "text",
@@ -32,32 +40,33 @@ export class CreateCasePage implements OnInit {
       pattern: /^[0-9]{10}/,
       value: '',
       icons: []
-    },{
-    type: "text",
-    label: 'Vehicle number',
-    required: true,
-    name: 'vehicle_number',
-    value: '',
-    icons: []
-  },
+    }, {
+      type: "text",
+      label: 'Vehicle number',
+      required: true,
+      name: 'vehicle_number',
+      value: '',
+      icons: []
+    },
 
-  {
-    type: "text",
-    label: 'Description',
-    required: false,
-    name: 'description',
-    value: '',
-    icons: []
-  },
-  {
-    type: "date",
-    label: 'Date',
-    required: true,
-    name: 'date',
-    value: '',
-    icons: []
-  },
-  ]
+    {
+      type: "text",
+      label: 'Description',
+      required: false,
+      name: 'description',
+      value: '',
+      icons: []
+    },
+    {
+      type: "date",
+      label: 'Date',
+      required: true,
+      name: 'date',
+      value: '',
+      icons: []
+    },
+  ];
+  user;
   constructor(
     public router: Router,
     private loader: LoaderService,
@@ -65,13 +74,22 @@ export class CreateCasePage implements OnInit {
     private kavaludhala: Kavaludhala,
     private toastServiceService: ToastServiceService,
     private route: ActivatedRoute,
-    private attachmentService:AttachmentService
+    private attachmentService: AttachmentService,
+    private userService : CurrentUserService,
+private alertController : AlertController
+
   ) {
-    translate.defaultLang ='en';
-   }
+    translate.defaultLang = 'en';
+   
+  }
 
   ngOnInit() {
     this.prepareForm();
+    console.log('in ngonit');
+    this.userService.getUser().then(user =>{
+      this.user = user;
+      console.log( this.user ," this.user ");
+    })
   }
 
   checkPattern(field) {
@@ -104,34 +122,150 @@ export class CreateCasePage implements OnInit {
     );
   }
 
-  createCase(){
-    console.log(this.create.value,"this.create");
+  createCase() {
+    if(this.suspectImg && this.front && this.back &&  this.vehicleImg) {
+      console.log(this.create.value, "this.create");
+       this.loader.startLoader('Please wait, loading');
+      let suspect ={
+        value : this.suspectImg,
+        type :'png'
+      }
+      let vehicle ={
+        value : this.vehicleImg,
+        type :'png'
+      }
+      let idProof ={
+       front:{
+         value:this.front,
+         type :'png'
+       },
+       back:{
+        value:this.back,
+        type :'png'
+      },
+      }
+     
+      this.create.value.suspect_photo = suspect;
+      this.create.value.id_proof = idProof;
+      this.create.value.vehicle_photo = vehicle;
+      console.log(this.create.value,"payload");
+      const config = {
+        url: urlConstants.API_URLS.CREATE_CASE,
+        payload: this.create.value,
+      }
+      this.kavaludhala.post(config).subscribe(data => {
+        this.loader.stopLoader();
+        if (data.data) {
+          this.toastServiceService.displayMessage('Case created Successfully', 'success');
+          this.router.navigate(['menu/home']);
+        } else {
+          this.toastServiceService.displayMessage('Something went wrong.', 'danger');
+        }
+      }, error => {
+        this.toastServiceService.displayMessage('Something went wrong, please try again later', 'danger');
+        this.loader.stopLoader();
+      })
+    }
   }
 
   addFrontId() {
     this.attachmentService.selectImage().then((data) => {
-      data.data ? this.idProof={
-        front: data.data 
-      } : "";
+      if (data.data) {
+        let img = {
+          front:{
+            value: data.data.value,
+            type: 'png'
+          }
+        }
+        this.front =data.data.value;
+        this.frontPreview = "data:image/jpeg;base64,"+data.data.value;
+
+        this.create.value.id_proof = img;
+      }
     });
   }
 
-  backFrontId() {
+  addBackId() {
     this.attachmentService.selectImage().then((data) => {
-      data.data ? this.idProof={
-        back: data.data 
-      } : "";
+      console.log(data.data, "vvv")
+
+      if (data.data) {
+        let img = {
+          back:{
+            value: data.data.value,
+            type: 'png'
+          }
+        }
+        this.back = data.data.value;
+        this.backPreview  = "data:image/jpeg;base64," +data.data.value;
+        this.create.value.id_proof = img;
+      }
     });
   }
 
   suspect() {
     this.attachmentService.selectImage().then((data) => {
-      data.data ? this.suspectImg=data.data : "";
+      if (data.data) {
+        let img = {
+          value: data.data.value,
+          type: 'png'
+        }
+        this.suspectImg = data.data.value;
+        this.suspectPreview  = "data:image/jpeg;base64," +data.data.value;
+      }
     });
   }
   vehicle() {
     this.attachmentService.selectImage().then((data) => {
-      data.data ? this.vehicleImg= data.data : "";
+      if (data.data) {
+        let img = {
+          value: data.data.value,
+          type: 'png'
+        }
+        this.vehicleImg =  data.data.value;
+        this.vehiclePreview  = "data:image/jpeg;base64," +data.data.value;
+      }
     });
+  }
+
+  async deleteImageAlert(type){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Are you sure!',
+      message: 'You want to delete ' + type +' photo ?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            this.deleteCpaturedImage(type)
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  deleteCpaturedImage(type){
+    if(type == 'Vehicle'){
+      this.vehicleImg='';
+      this.vehiclePreview='';
+    }else if(type == 'Suspect'){
+      this.suspectImg='';
+      this.suspectPreview ='';
+    }else if(type == 'Back id'){
+      this.backPreview='';
+      this.back='';
+    }else if(type == 'Front id'){
+      this.frontPreview='';
+      this.front='';
+    }
+    this.toastServiceService.displayMessage(type + 'photo deleted successfully.', 'success');
   }
 }

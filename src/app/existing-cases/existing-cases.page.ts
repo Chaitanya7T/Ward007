@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
+
 import {
   Kavaludhala,
   LoaderService,
@@ -15,40 +16,39 @@ import { Case } from "./cases";
 })
 export class ExistingCasesPage implements OnInit {
   showMenu: boolean = false;
-  casesList: Case[] =[];
-  public curentCount: number;
-
+  casesList =[];
+  public currentCount: number;
+  page =1;
+  searchText ='';
   constructor(
     private modalCtrl: ModalController,
 
     private kavaludhal: Kavaludhala,
     private loader: LoaderService,
-    private toastServiceService: ToastServiceService
-  ) {}
+    private toastServiceService: ToastServiceService  ) {}
 
   ngOnInit() {
-    this.getCasesList("");
+    this.getCasesList();
   }
 
   public onSearchInput(data) {
-    this.getCasesList(data.detail.value);
+    this.casesList =[];
+    this.page = 1;
+    this.searchText =data.detail.value;
+    this.getCasesList();
   }
-  public getCasesList(serchQury: string) {
+  public getCasesList() {
     this.loader.startLoader("Please wait, loading");
-    let apiUrl = urlConstants.API_URLS.GET_CASE;
-    if (serchQury) {
-      apiUrl = `${urlConstants.API_URLS.GET_CASE}?search=${serchQury}&pageNo=1&pageSize=1`;
-    }
-    debugger
     const config = {
-      url: apiUrl,
+      url:  urlConstants.API_URLS.GET_CASE + this.searchText+'&pageNo='+ this.page
     };
     this.kavaludhal.get(config).subscribe(
       (data) => {
         this.loader.stopLoader();
-        this.curentCount = data?.count || 0;
+        this.currentCount = data?.count || 0;
         if (data.data) {
-          this.casesList = data.data;
+          this.casesList =this.casesList.concat(data.data.data);
+          console.log( this.casesList," this.casesList");
         } else {
           this.toastServiceService.displayMessage(data.message, "danger");
         }
@@ -60,6 +60,10 @@ export class ExistingCasesPage implements OnInit {
     );
   }
 
+  loadMore(){
+    this.page = this.page +1;
+    this.getCasesList();
+  }
   viewDetails(cases: Case) {
     this.modalCtrl
       .create({
@@ -70,4 +74,5 @@ export class ExistingCasesPage implements OnInit {
         modalres.present();
       });
   }
+  
 }

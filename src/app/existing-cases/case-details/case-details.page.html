@@ -2,13 +2,15 @@
   <ion-toolbar>
       <ion-buttons slot="start">
           <ion-button color="danger" (click)="dismiss()">
-            <span ion-text color="primary" showWhen="ios"></span>
-            <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+            <span ion-text color="primary"></span>
+            <ion-icon name="md-close" ></ion-icon>
           </ion-button>
         </ion-buttons>
-    <ion-title>Case Info</ion-title>
+    <ion-title>Case Info
+    </ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
   <ion-card>
     <div style="display: flex; align-items: center;justify-content: center;">
@@ -27,11 +29,11 @@
             Info
           </ion-list-header>
           <ion-item>
-              <ion-label>Mobile Number</ion-label>
+              <ion-label>Mobile number</ion-label>
               <ion-label color="primary" slot="end">{{case.mobile_number}}</ion-label>
             </ion-item>
             <ion-item>
-                <ion-label>Vehicle Number</ion-label>
+                <ion-label>Vehicle number</ion-label>
                 <ion-label color="secondary" slot="end">{{case?.vehicle_number}}</ion-label>
               </ion-item>
               <ion-item>
@@ -49,7 +51,7 @@
                   margin-top: 15px;"></ion-img>
               </ion-item>
               <ion-item>
-                <ion-label style=" margin-bottom: 7em; ">Id proof Back</ion-label>
+                <ion-label style=" margin-bottom: 7em; ">Id proof back</ion-label>
               <ion-img src="{{case?.id_proof.back.image}}"  style=" width: 40%;
                   margin-top: 15px;"></ion-img>
               </ion-item>
