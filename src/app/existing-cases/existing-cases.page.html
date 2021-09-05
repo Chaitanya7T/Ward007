@@ -6,13 +6,19 @@
 
 <ion-content class="ion-padding">
   <app-logo> </app-logo>
-  <ion-card *ngFor="let cases of casesList">
-    <ion-card-header (click)="viewDetails(cases)">
-      <ion-card-title>{{cases.name}}</ion-card-title>
+  <ion-searchbar
+  (ionChange)="onSearchInput($event)"
+  debounce="500"
+  ></ion-searchbar>
+  <ion-card *ngFor="let case of casesList" (click)="viewDetails(case)">
+    <ion-card-header >
+      <ion-card-title>{{case.name}}</ion-card-title>
       <ion-card-subtitle
-        >Mobile number: {{cases.mobile_number}}
-        <span class="date">{{cases.date}}</span></ion-card-subtitle
+        >Mobile number: {{case.mobile_number}} 
+        <span class="date">{{case.date | date:'short'}}</span></ion-card-subtitle
       >
     </ion-card-header>
   </ion-card>
+  <ion-button (click)="loadMore()" expand="block" *ngIf="casesList?.length > 0 && currentCount > casesList?.length">
+    Load More</ion-button>
 </ion-content>

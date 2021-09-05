@@ -23,7 +23,6 @@ export class ApiInterceptor implements HttpInterceptor {
 
     async handle(req: HttpRequest<any>, next: HttpHandler) {
         let authReq;
-        // send skip param as true in header to disable headers
         if (req.url.indexOf(urlConstants.API_URLS.LOGIN) === -1 && req.url.indexOf(urlConstants.API_URLS.REGISTER) === -1) {
             let token;
             await this.currentUserService.getToken().then(token=>{
@@ -37,7 +36,6 @@ export class ApiInterceptor implements HttpInterceptor {
              }
             return next.handle(authReq).toPromise()
             })
-        //    this.currentUserService.getToken().then(token=>{
             if (token) {
                authReq = req.clone({
                     setHeaders: {
@@ -45,9 +43,6 @@ export class ApiInterceptor implements HttpInterceptor {
                     }
                 })
             }
-                
-            // })
-           
         } else {
             authReq = req.clone({
                 headers: req.headers.delete('x-access-token')

@@ -2,7 +2,7 @@
   "cordova-plugin-whitelist": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-whitelist@^1.3.3"
+      "id": "cordova-plugin-whitelist@^1.3.5"
     },
     "is_top_level": true,
     "variables": {}
@@ -18,7 +18,7 @@
   "cordova-plugin-device": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-device@^2.0.2"
+      "id": "cordova-plugin-device@^2.0.3"
     },
     "is_top_level": true,
     "variables": {}
@@ -26,7 +26,7 @@
   "cordova-plugin-splashscreen": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-splashscreen@^5.0.2"
+      "id": "cordova-plugin-splashscreen@^5.0.4"
     },
     "is_top_level": true,
     "variables": {}
@@ -60,7 +60,7 @@
   "cordova-plugin-inappbrowser": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-inappbrowser@^4.0.0"
+      "id": "cordova-plugin-inappbrowser@^4.1.0"
     },
     "is_top_level": true,
     "variables": {}
@@ -68,7 +68,7 @@
   "cordova-plugin-sqlite-2": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-sqlite-2@^1.0.6"
+      "id": "cordova-plugin-sqlite-2@^1.0.7"
     },
     "is_top_level": true,
     "variables": {}
@@ -108,7 +108,7 @@
   "ionic-plugin-deeplinks": {
     "source": {
       "type": "registry",
-      "id": "ionic-plugin-deeplinks@^1.0.20"
+      "id": "ionic-plugin-deeplinks@^1.0.22"
     },
     "is_top_level": true,
     "variables": {

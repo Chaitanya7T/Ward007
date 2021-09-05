@@ -34,7 +34,7 @@
       </h4>
       <div class="img-block">
         <div  class="upload-image">
-          <ion-icon class="icon-trash" name="close-circle-outline"  *ngIf="front" (click)="deleteImageAlert('front')"></ion-icon>
+          <ion-icon class="icon-trash" name="close-circle-outline"  *ngIf="front" (click)="deleteImageAlert('Front id')"></ion-icon>
           <img src="{{frontPreview}}" *ngIf="front" >
           <div *ngIf="!front" (click)="addFrontId()">
             Upload Id front page
@@ -42,14 +42,14 @@
         </div>
        
         <div  class="upload-image">
-          <ion-icon class="icon-trash" name="close-circle-outline"  *ngIf="back" (click)="deleteImageAlert('back')"></ion-icon>
+          <ion-icon class="icon-trash" name="close-circle-outline"  *ngIf="back" (click)="deleteImageAlert('Back id')"></ion-icon>
           <img src="{{backPreview}}" *ngIf="back" >
           <div *ngIf="!back" (click)="addBackId()">
             Upload Id back page
             </div>
         </div>
         <div  class="upload-image">
-          <ion-icon class="icon-trash" name="close-circle-outline"  *ngIf="suspectImg" (click)="deleteImageAlert('suspect')"></ion-icon>
+          <ion-icon class="icon-trash" name="close-circle-outline"  *ngIf="suspectImg" (click)="deleteImageAlert('Suspect')"></ion-icon>
           <img src="{{suspectPreview}}" *ngIf="suspectImg" >
           <div *ngIf="!suspectImg" (click)="suspect()">
             Upload Suspect Photo
@@ -57,7 +57,7 @@
         </div>
          
         <div class="upload-image">
-          <ion-icon class="icon-trash" name="close-circle-outline"  *ngIf="vehicleImg" (click)="deleteImageAlert('vehicle')"></ion-icon>
+          <ion-icon class="icon-trash" name="close-circle-outline"  *ngIf="vehicleImg" (click)="deleteImageAlert('Vehicle')"></ion-icon>
           <img src="{{vehiclePreview}}" *ngIf="vehicleImg" >
           <div *ngIf="!vehicleImg" (click)="vehicle()">
             Upload Vehicle Photo

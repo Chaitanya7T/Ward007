@@ -5,7 +5,7 @@ import { LoaderService, Kavaludhala, urlConstants, ToastServiceService, Attachme
 import { TranslateStore } from '@ngx-translate/core';
 import {Http, Headers} from '@angular/http';
 import { CurrentUserService } from '../core/services/current-user/current-user.service';
-
+import { AlertController } from "@ionic/angular";
 @Component({
   selector: 'app-create-case',
   templateUrl: './create-case.page.html',
@@ -75,7 +75,9 @@ export class CreateCasePage implements OnInit {
     private toastServiceService: ToastServiceService,
     private route: ActivatedRoute,
     private attachmentService: AttachmentService,
-    private userService : CurrentUserService
+    private userService : CurrentUserService,
+private alertController : AlertController
+
   ) {
     translate.defaultLang = 'en';
    
@@ -154,7 +156,8 @@ export class CreateCasePage implements OnInit {
       this.kavaludhala.post(config).subscribe(data => {
         this.loader.stopLoader();
         if (data.data) {
-          console.log(data.data, "data create case");
+          this.toastServiceService.displayMessage('Case created Successfully', 'success');
+          this.router.navigate(['menu/home']);
         } else {
           this.toastServiceService.displayMessage('Something went wrong.', 'danger');
         }
@@ -167,7 +170,6 @@ export class CreateCasePage implements OnInit {
 
   addFrontId() {
     this.attachmentService.selectImage().then((data) => {
-     
       if (data.data) {
         let img = {
           front:{
@@ -224,5 +226,46 @@ export class CreateCasePage implements OnInit {
         this.vehiclePreview  = "data:image/jpeg;base64," +data.data.value;
       }
     });
+  }
+
+  async deleteImageAlert(type){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Are you sure!',
+      message: 'You want to delete ' + type +' photo ?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            this.deleteCpaturedImage(type)
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  deleteCpaturedImage(type){
+    if(type == 'Vehicle'){
+      this.vehicleImg='';
+      this.vehiclePreview='';
+    }else if(type == 'Suspect'){
+      this.suspectImg='';
+      this.suspectPreview ='';
+    }else if(type == 'Back id'){
+      this.backPreview='';
+      this.back='';
+    }else if(type == 'Front id'){
+      this.frontPreview='';
+      this.front='';
+    }
+    this.toastServiceService.displayMessage(type + 'photo deleted successfully.', 'success');
   }
 }
