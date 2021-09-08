@@ -15,14 +15,14 @@ export class RegisterPage implements OnInit {
   fields = [
     {
       type: "text",
-      label: 'Matal number',
+      label: 'Metal Number',
       required: true,
       name: 'matal_number',
       value: '',
       icons: []
     },{
     type: "text",
-    label: 'Full name',
+    label: 'Full Name',
     required: true,
     name: 'name',
     value: '',
@@ -30,7 +30,7 @@ export class RegisterPage implements OnInit {
   },
   {
     type: "number",
-    label: 'Mobile number',
+    label: 'Mobile Number',
     required: true,
     name: 'mobile_number',
     pattern: /^[0-9]{10}/,

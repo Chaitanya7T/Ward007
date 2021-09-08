@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ToastServiceService } from '../toast-message/toast-service.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +18,8 @@ export class ApiService {
   auth: AuthService;
   router: Router;
   alertController: AlertController
-  constructor(public http: HttpClient
+  constructor(public http: HttpClient,
+    private toastService : ToastServiceService
   ) { }
 
   get(requestParam: RequestParams): Observable<any> {
@@ -30,12 +33,12 @@ export class ApiService {
   }
 
   post(requestParam: RequestParams): Observable<any> {
-    console.log(environment.apiBaseUrl + this.baseUrl + requestParam.url, "environment.apiBaseUrl + this.baseUrl + requestParam.url");
     return this.http.post(environment.apiBaseUrl + this.baseUrl + requestParam.url, requestParam.payload).pipe(
       tap(data => {
         return data;
       }, error => {
         console.log(error.error,"error 56");
+        this.toastService.displayMessage(error.error.message,'danger');
         return error.error
       }),
       catchError(this.handleError([]))
@@ -43,7 +46,6 @@ export class ApiService {
   }
 
   put(requestParam: RequestParams): Observable<any> {
-    console.log(environment.apiBaseUrl + this.baseUrl + requestParam.url, "environment.apiBaseUrl + this.baseUrl + requestParam.url");
     return this.http.put(environment.apiBaseUrl + this.baseUrl + requestParam.url, requestParam.payload).pipe(
       tap(data => {
         return data
@@ -54,7 +56,6 @@ export class ApiService {
   }
 
   delete(requestParam: RequestParams): Observable<any> {
-    console.log(environment.apiBaseUrl + this.baseUrl + requestParam.url, "environment.apiBaseUrl + this.baseUrl + requestParam.url");
     return this.http.delete(environment.apiBaseUrl + this.baseUrl + requestParam.url).pipe(
       tap(data => {
         return data
@@ -87,7 +88,7 @@ export class ApiService {
       // this.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
-      if (error.statue === 401) {
+      if (error.status === 401) {
 
       } else {
 

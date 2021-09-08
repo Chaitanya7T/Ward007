@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
-
 import {
   Kavaludhala,
   LoaderService,
@@ -22,7 +21,6 @@ export class ExistingCasesPage implements OnInit {
   searchText ='';
   constructor(
     private modalCtrl: ModalController,
-
     private kavaludhal: Kavaludhala,
     private loader: LoaderService,
     private toastServiceService: ToastServiceService  ) {}
@@ -75,4 +73,5 @@ export class ExistingCasesPage implements OnInit {
       });
   }
   
+
 }

@@ -34,7 +34,7 @@ export class CreateCasePage implements OnInit {
     },
     {
       type: "number",
-      label: 'Mobile number',
+      label: 'Mobile Number',
       required: true,
       name: 'mobile_number',
       pattern: /^[0-9]{10}/,
@@ -42,8 +42,8 @@ export class CreateCasePage implements OnInit {
       icons: []
     }, {
       type: "text",
-      label: 'Vehicle number',
-      required: true,
+      label: 'Vehicle Number',
+      required: false,
       name: 'vehicle_number',
       value: '',
       icons: []
@@ -57,14 +57,14 @@ export class CreateCasePage implements OnInit {
       value: '',
       icons: []
     },
-    {
-      type: "date",
-      label: 'Date',
-      required: true,
-      name: 'date',
-      value: '',
-      icons: []
-    },
+    // {
+    //   type: "date",
+    //   label: 'Date',
+    //   required: true,
+    //   name: 'date',
+    //   value: '',
+    //   icons: []
+    // },
   ];
   user;
   constructor(
@@ -124,6 +124,7 @@ private alertController : AlertController
 
   createCase() {
     if(this.suspectImg && this.front && this.back &&  this.vehicleImg) {
+      this.create.value.date = new Date();
       console.log(this.create.value, "this.create");
        this.loader.startLoader('Please wait, loading');
       let suspect ={
