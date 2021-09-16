@@ -24,6 +24,10 @@ const routes: Routes = [
         path: 'create-case',
         loadChildren: () => import('../create-case/create-case.module').then( m => m.CreateCasePageModule)
       },
+      {
+        path: 'profile',
+        loadChildren: () => import('../profile/profile.module').then( m => m.ProfilePageModule)
+      }
     ]
   }, {
     path: '',

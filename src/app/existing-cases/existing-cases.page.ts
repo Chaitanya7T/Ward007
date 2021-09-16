@@ -46,7 +46,6 @@ export class ExistingCasesPage implements OnInit {
         this.currentCount = data?.count || 0;
         if (data.data) {
           this.casesList =this.casesList.concat(data.data.data);
-          console.log( this.casesList," this.casesList");
         } else {
           this.toastServiceService.displayMessage(data.message, "danger");
         }

@@ -12,14 +12,21 @@ import { CurrentUserService } from '../core/services/current-user/current-user.s
 })
 export class RegisterPage implements OnInit {
   register: FormGroup;
+  enableFields = false;
   fields = [
     {
       type: "text",
       label: 'Metal Number',
       required: true,
-      name: 'matal_number',
+      name: 'metal_number',
       value: '',
-      icons: []
+      icons: [
+        {
+          name:'arrow-forward-outline',
+          slot:'end',
+          action:'verifyMetal'
+        }
+      ]
     },{
     type: "text",
     label: 'Full Name',
@@ -99,6 +106,43 @@ export class RegisterPage implements OnInit {
     this.register = new FormGroup(
       controls
     );
+  }
+
+  doAction(type){
+    console.log(type,"type");
+    switch(type ){
+      case 'verifyMetal' :
+      this.metalVerify();
+      break;
+    }
+  }
+  metalVerify(){
+    this.enableFields = false;
+
+    console.log( this.register.value,"this.register.value");
+    this.loader.startLoader('Please wait, loading');
+    const config = {
+      url: urlConstants.API_URLS.METAL_VERIFY,
+      payload: { metal_number: this.register.value.metal_number}
+    }
+    this.kavaludhal.post(config).subscribe(data => {
+      console.log(data,"data");
+      this.loader.stopLoader();
+      if (data.status == 200) {
+        // this.userService.setUser(data.data).then(data =>{
+        //   this.router.navigate(['menu/home']);
+        // })
+        this.enableFields = true;
+        this.toastServiceService.displayMessage(data.message, 'success');
+      } else {
+    this.enableFields = false;
+        this.toastServiceService.displayMessage(data.message, 'danger');
+      }
+    }, error => {
+      this.enableFields = false;
+      this.toastServiceService.displayMessage(error.message, 'danger');
+      this.loader.stopLoader();
+    })
   }
   doRegister(){
     console.log( this.register.value,"this.register.value");

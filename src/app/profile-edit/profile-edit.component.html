@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="danger">
+        <span ion-text color="primary"></span>
+        <ion-icon name="md-close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edit profile
+      <ion-icon name="close-circle-outline" (click)="dismiss()" role="img" style="
+    float: right;
+"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+<div style="text-align: center;    margin-bottom: 15px;">
+  <img *ngIf="profileImg" src="{{profileImg}}" style="width: 40%;
+      height: 150px;
+      margin: 10px;">
+       <img *ngIf="!profileImg" src="assets/images/profile.png" style="width: 40%;
+       height: 150px;
+       margin: 10px;">
+       <p class="overlay-text-photo">
+        <span class="change-photo-label" (click)="uploadPhoto()"> Change Photo </span>
+       </p>
+  <ion-title class="custom-header">
+  </ion-title>
+</div>
+<form [formGroup]="update" novalidate class="login">
+    <div class="form-fields" *ngFor="let field of fields">
+      <ion-item>
+        <ion-label position="floating">{{field.label | translate}}
+          <span *ngIf="field.required" class="required-field"> * </span>
+        </ion-label>
+        <ion-input type="{{field.type}}" [formControlName]="field.name" placeholder={{field.placeholder}}
+          (ionChange)="checkPattern(field)" value={{field.value}} [disabled]="field.disabled"> </ion-input>
+      </ion-item>
+      <ng-container>
+        <span class="required-field"
+          *ngIf="(field?.required && update.controls[field.name].touched  && update.controls[field.name].errors?.required) ">
+          {{field.label | translate}} is required.
+        </span>
+        <span *ngIf="field.value && field.pattern && !field.patternMatch" class="required-field">
+          Please enter valid {{field.label | translate}}.
+        </span>
+      </ng-container>
+    </div>
+    <!-- [disabled]="!update.valid" -->
+    <ion-button (click)="submit()" expand="block" [disabled]="!update.valid">
+      Update</ion-button>
+  </form>
+</ion-content>
