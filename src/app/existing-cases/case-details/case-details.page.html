@@ -17,7 +17,7 @@
 <ion-content>
   <ion-card>
     <div style="display: flex; align-items: center;justify-content: center;">
-      <ion-icon name="cloud-download-outline" class="download-btn"></ion-icon>
+      <ion-icon *ngIf="case?.suspect_photo?.image" name="cloud-download-outline" class="download-btn"></ion-icon>
       <ion-img *ngIf="case?.suspect_photo?.image" [src]="case?.suspect_photo?.image" class="img-DP"
         (click)="preview(case?.suspect_photo?.image,'Suspect Photo')"></ion-img>
         <ion-img *ngIf="!case?.suspect_photo?.image"  src="assets/images/profile.png" class="img-DP"></ion-img>
@@ -48,19 +48,19 @@
       </ion-item>
       <ion-item>
         <ion-label style=" margin-bottom: 7em; ">Vehicle Photo </ion-label>
-          <ion-icon name="cloud-download-outline" class="download-btn-doc"></ion-icon>
+          <ion-icon name="cloud-download-outline" (click)="downloadFile(case?.vehicle_photo?.image,'vehiclePhoto.png')" *ngIf="case?.vehicle_photo?.image" class="download-btn-doc"></ion-icon>
           <ion-img *ngIf="case?.vehicle_photo?.image" src="{{case?.vehicle_photo?.image}}" class="img-doc"
             (click)="preview(case?.vehicle_photo.image,'Vehicle photo')"></ion-img>
       </ion-item>
       <ion-item>
         <ion-label style=" margin-bottom: 7em; ">Id Proof Front</ion-label>
-          <ion-icon name="cloud-download-outline" class="download-btn-doc" (click)="downloadFile(case?.id_proof?.front?.image,'idCardFrontpagephoto.png')"></ion-icon>
+          <ion-icon name="cloud-download-outline" *ngIf="case?.id_proof?.front?.image" class="download-btn-doc" (click)="downloadFile(case?.id_proof?.front?.image,'idCardFrontpagephoto.png')"></ion-icon>
           <ion-img *ngIf="case?.id_proof?.front?.image" [src]="case?.id_proof?.front?.image" class="img-doc"
             (click)="preview(case?.id_proof?.front?.image,'Id Card Front page photo')"></ion-img>
       </ion-item>
       <ion-item>
         <ion-label style=" margin-bottom: 7em; ">Id Proof Back</ion-label>
-          <ion-icon name="cloud-download-outline" class="download-btn-doc" (click)="downloadFile(case?.id_proof?.back?.image,'idCardBackpagephoto.png')"></ion-icon>
+          <ion-icon name="cloud-download-outline"  *ngIf="case?.id_proof.back?.image" class="download-btn-doc" (click)="downloadFile(case?.id_proof?.back?.image,'idCardBackpagephoto.png')"></ion-icon>
           <ion-img *ngIf="case?.id_proof.back?.image" src="{{case?.id_proof.back?.image}}" class="img-doc"
             (click)="preview(case?.id_proof?.back?.image,'Id Card Back page photo')"></ion-img>
       </ion-item>
