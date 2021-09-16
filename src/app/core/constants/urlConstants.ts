@@ -9,6 +9,7 @@ export const urlConstants = {
         GET_CASE:'v1/complaints/list?search=',
         GET_PROFILE:'v1/user/profile/',
         UPDATE_PROFILE:'v1/user/update',
-        METAL_VERIFY:'v1/auth/verifyMetal'
+        METAL_VERIFY:'v1/auth/verifyMetal',
+        DOWNLOAD_CAASES:''
     }
 };
