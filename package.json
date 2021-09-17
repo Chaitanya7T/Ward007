@@ -71,7 +71,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
-    "cordova-android": "^9.1.0",
+    "cordova-android": "^9.0.0",
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-app-version": "^0.1.12",
     "cordova-plugin-badge": "^0.8.8",
@@ -106,7 +106,6 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
@@ -119,8 +118,12 @@
       "cordova-plugin-sqlite-2": {},
       "cordova-plugin-file": {},
       "cordova-plugin-app-version": {},
+      "com-sarriaroman-photoviewer": {},
       "cordova-plugin-network-information": {},
       "cordova-plugin-file-transfer": {},
+      "cordova-plugin-file-opener2": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
       "ionic-plugin-deeplinks": {
         "URL_SCHEME": "unnati",
         "DEEPLINK_SCHEME": "https",
@@ -145,7 +148,8 @@
       "cordova-plugin-nativegeocoder": {
         "LOCATION_WHEN_IN_USE_DESCRIPTION": "Use geocoder service"
       },
-      "cordova-plugin-local-notification": {}
+      "cordova-plugin-local-notification": {},
+      "cordova-plugin-whitelist": {}
     },
     "platforms": [
       "ios",

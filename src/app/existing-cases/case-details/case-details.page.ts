@@ -33,16 +33,16 @@ export class CaseDetailsPage implements OnInit {
     this.viewCtrl.dismiss();
   }
 
-  preview(url,name) {
-    this.photoViewer.show(url,name, { share: true });
+  preview(url) {
+    this.photoViewer.show(url);
   }
 
   downloadFile(url, name) {
-    this.loader.startLoader("Please wait, loading");
+    this.loader.startLoader("Loading... Please wait");
     const fileTransfer: FileTransferObject = this.transfer.create();
     fileTransfer.download(url, this.path + '/' + name).then(success => {
       this.loader.stopLoader();
-      this.preview(url,name);
+      this.preview(url);
     }, error => {
       this.loader.stopLoader();
     })

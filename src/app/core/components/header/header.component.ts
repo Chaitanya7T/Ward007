@@ -14,10 +14,8 @@ export class HeaderComponent implements OnInit {
 
   @Input() title: string;
   @Input() showMenu: boolean = false;
-
   constructor(
     private notificationServ: NotificationService,
-    private router: Router,
     private localNotifications: LocalNotifications,
     private alert: AlertController
   ) { }

@@ -23,7 +23,7 @@ export class ApiInterceptor implements HttpInterceptor {
 
     async handle(req: HttpRequest<any>, next: HttpHandler) {
         let authReq;
-        if (req.url.indexOf(urlConstants.API_URLS.LOGIN) === -1 && req.url.indexOf(urlConstants.API_URLS.REGISTER) === -1) {
+        if (req.url.indexOf(urlConstants.API_URLS.METAL_VERIFY) === -1 && req.url.indexOf(urlConstants.API_URLS.LOGIN) === -1 && req.url.indexOf(urlConstants.API_URLS.REGISTER) === -1) {
             let token;
             await this.currentUserService.getToken().then(token=>{
                token = token;

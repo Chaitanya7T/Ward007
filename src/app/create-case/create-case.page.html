@@ -30,21 +30,21 @@
         </ng-container>
       </div>
       <h4>
-        Upload Documents <span class="required-field"> * </span>
+        Upload Documents 
       </h4>
       <div class="img-block">
         <div  class="upload-image">
           <ion-icon class="icon-trash" name="close-circle-outline"  *ngIf="suspectImg" (click)="deleteImageAlert('Suspect')"></ion-icon>
           <img src="{{suspectPreview}}" *ngIf="suspectImg" >
           <div *ngIf="!suspectImg" (click)="suspect()">
-            Upload Suspect Photo   <span class="required-field"> * </span>
+            Upload Suspect Photo  
             </div>
         </div>
         <div  class="upload-image">
           <ion-icon class="icon-trash" name="close-circle-outline"  *ngIf="front" (click)="deleteImageAlert('Front id')"></ion-icon>
           <img src="{{frontPreview}}" *ngIf="front" >
           <div *ngIf="!front" (click)="addFrontId()">
-            Upload Id front page   <span class="required-field"> * </span>
+            Upload Id front page 
             </div>
         </div>
        
@@ -52,7 +52,7 @@
           <ion-icon class="icon-trash" name="close-circle-outline"  *ngIf="back" (click)="deleteImageAlert('Back id')"></ion-icon>
           <img src="{{backPreview}}" *ngIf="back" >
           <div *ngIf="!back" (click)="addBackId()">
-            Upload Id back page   <span class="required-field"> * </span>
+            Upload Id back page
             </div>
         </div>
   

@@ -22,6 +22,12 @@ export class MenuPage implements OnInit {
         url: "menu/existing-cases",
         icon: "list-outline"
       },
+
+      {
+        title: "Profile",
+        url: "menu/profile",
+        icon: "person-circle-outline"
+      },
       {
         title: "Logout",
         url: "",

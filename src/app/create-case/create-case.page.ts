@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { Router, ActivatedRoute } from '@angular/router';
-import { LoaderService, Kavaludhala, urlConstants, ToastServiceService, AttachmentService } from '../core';
+import { LoaderService, Kavaludhala, urlConstants, ToastServiceService, AttachmentService, NetworkService } from '../core';
 import { TranslateStore } from '@ngx-translate/core';
-import {Http, Headers} from '@angular/http';
 import { CurrentUserService } from '../core/services/current-user/current-user.service';
 import { AlertController } from "@ionic/angular";
+
 @Component({
   selector: 'app-create-case',
   templateUrl: './create-case.page.html',
@@ -27,7 +27,7 @@ export class CreateCasePage implements OnInit {
     {
       type: "text",
       label: 'Name',
-      required: true,
+      required: false,
       name: 'name',
       value: '',
       icons: []
@@ -35,7 +35,7 @@ export class CreateCasePage implements OnInit {
     {
       type: "number",
       label: 'Mobile Number',
-      required: true,
+      required: false,
       name: 'mobile_number',
       pattern: /^[0-9]{10}/,
       value: '',
@@ -76,11 +76,11 @@ export class CreateCasePage implements OnInit {
     private route: ActivatedRoute,
     private attachmentService: AttachmentService,
     private userService : CurrentUserService,
-private alertController : AlertController
+    private alertController : AlertController,
+    private network: NetworkService
 
   ) {
     translate.defaultLang = 'en';
-   
   }
 
   ngOnInit() {
@@ -123,49 +123,57 @@ private alertController : AlertController
   }
 
   createCase() {
-    if(this.suspectImg && this.front && this.back &&  this.vehicleImg) {
+    if(this.network.isNetworkAvailable){
       this.create.value.date = new Date();
-      console.log(this.create.value, "this.create");
-       this.loader.startLoader('Please wait, loading');
-      let suspect ={
-        value : this.suspectImg,
-        type :'png'
-      }
-      let vehicle ={
-        value : this.vehicleImg,
-        type :'png'
-      }
-      let idProof ={
+      this.loader.startLoader('Please wait, loading');
+      let suspect,vehicle,idProof
+   if(this.suspectImg){
+     suspect ={
+       value : this.suspectImg,
+       type :'png'
+     }
+   } 
+   if(this.vehicleImg){
+     vehicle ={
+       value : this.vehicleImg,
+       type :'png'
+     }
+   }
+   if(this.front || this.back){
+     idProof ={
        front:{
-         value:this.front,
+         value:this.front ? this.front : '',
          type :'png'
        },
        back:{
-        value:this.back,
+        value:this.back ? this.back :'',
         type :'png'
       },
-      }
-     
-      this.create.value.suspect_photo = suspect;
-      this.create.value.id_proof = idProof;
-      this.create.value.vehicle_photo = vehicle;
-      console.log(this.create.value,"payload");
-      const config = {
-        url: urlConstants.API_URLS.CREATE_CASE,
-        payload: this.create.value,
-      }
-      this.kavaludhala.post(config).subscribe(data => {
-        this.loader.stopLoader();
-        if (data.data) {
-          this.toastServiceService.displayMessage('Case created Successfully', 'success');
-          this.router.navigate(['menu/home']);
-        } else {
-          this.toastServiceService.displayMessage('Something went wrong.', 'danger');
-        }
-      }, error => {
-        this.toastServiceService.displayMessage('Something went wrong, please try again later', 'danger');
-        this.loader.stopLoader();
-      })
+   }
+     }
+    
+     this.create.value.suspect_photo = suspect;
+     this.create.value.id_proof = idProof;
+     this.create.value.vehicle_photo = vehicle;
+
+     const config = {
+       url: urlConstants.API_URLS.CREATE_CASE,
+       payload: this.create.value,
+     }
+     this.kavaludhala.post(config).subscribe(data => {
+       this.loader.stopLoader();
+       if (data.data) {
+         this.toastServiceService.displayMessage('Case created Successfully', 'success');
+         this.router.navigate(['menu/home']);
+       } else {
+         this.toastServiceService.displayMessage('Something went wrong.', 'danger');
+       }
+     }, error => {
+       this.toastServiceService.displayMessage('Something went wrong, please try again later', 'danger');
+       this.loader.stopLoader();
+     })
+    }else{
+      this.toastServiceService.displayMessage('You are Offline, Please move to online to access the App feauters','danger');
     }
   }
 
@@ -188,8 +196,6 @@ private alertController : AlertController
 
   addBackId() {
     this.attachmentService.selectImage().then((data) => {
-      console.log(data.data, "vvv")
-
       if (data.data) {
         let img = {
           back:{
