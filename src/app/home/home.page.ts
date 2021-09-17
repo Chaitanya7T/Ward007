@@ -5,7 +5,6 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ng
 import { Platform } from "@ionic/angular";
 import { File } from "@ionic-native/file/ngx";
 import { FileOpener } from '@ionic-native/file-opener/ngx';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
