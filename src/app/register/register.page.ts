@@ -110,11 +110,22 @@ export class RegisterPage implements OnInit {
 
   doAction(type){
     switch(type ){
-      case 'verifyMetal' :
-      this.metalVerify();
+      case 'verifyMetal' :{
+        this.metalVerify();
+        break;
+      }
+      case 'reloadMetal' :{
+        if( this.fields[0].value){
+          this.register.value.metal_number ='';
+          this.fields[0].value='';
+          this.enableFields = false;
+        }
       break;
+      }
     }
   }
+
+
   metalVerify(){
     if(this.register.value.metal_number){
       this.enableFields = false;
@@ -129,7 +140,8 @@ export class RegisterPage implements OnInit {
           this.enableFields = true;
           this.toastServiceService.displayMessage(data.message, 'success');
         } else {
-      this.enableFields = false;
+          this.loader.stopLoader();
+          this.enableFields = false;
           this.toastServiceService.displayMessage(data.message, 'danger');
         }
       }, error => {

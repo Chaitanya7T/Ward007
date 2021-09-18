@@ -10,13 +10,13 @@
     New Case
   </ion-button>
 </div>
-<div  class="action-buttons">
+<div class="action-buttons">
   <ion-button color="primary" expand="block" (click)="goToCases()">
     Existing Cases
   </ion-button>
   </div>
 
-  <div  class="action-buttons">
+  <div class="action-buttons" *ngIf="userData && userData?.isAdmin">
     <ion-button color="primary" expand="block" (click)="downloadCases()">
       Download All Cases
     </ion-button>

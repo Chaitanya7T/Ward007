@@ -5,6 +5,8 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ng
 import { Platform } from "@ionic/angular";
 import { File } from "@ionic-native/file/ngx";
 import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { CurrentUserService } from '../core/services/current-user/current-user.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -13,6 +15,7 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
 export class HomePage implements OnInit {
   showMenu: boolean = true;
   path;
+  userData;
   constructor(
     private router: Router,
     private kavaludhala: Kavaludhala,
@@ -20,8 +23,13 @@ export class HomePage implements OnInit {
     public transfer: FileTransfer,
     private platform: Platform,
     private file: File,
-    private fileOpener: FileOpener
-  ) { }
+    private fileOpener: FileOpener,
+    private user :CurrentUserService
+  ) { 
+    user.getUser().then(user =>{
+      this.userData = user;
+    })
+  }
   ngOnInit() {
     this.path = this.platform.is("ios") ? this.file.documentsDirectory : this.file.externalDataDirectory;
   }
@@ -58,10 +66,9 @@ export class HomePage implements OnInit {
   downloadFile(url) {
     const fileTransfer: FileTransferObject = this.transfer.create();
     fileTransfer.download(url, this.path + '/' + 'cases.csv').then(success => {
-      window.open(url);
-      // this.fileOpener.open(this.path + '/' + 'cases.csv', 'text/plain')
-      //   .then(() => console.log('File is opened'))
-      //   .catch(e => console.log('Error opening file', e));
+      this.fileOpener.open(this.path + '/' + 'cases.csv', 'text/plain')
+        .then(() => console.log('File is opened'))
+        .catch(e => console.log('Error opening file', e));
     }, error => {
       console.log(error, "error");
     })

@@ -13,6 +13,7 @@
   <ion-card *ngFor="let case of casesList" (click)="viewDetails(case)">
     <ion-card-header >
       <ion-card-title>{{case.name}}</ion-card-title>
+      <ion-card-subtitle>Registered By : {{case.userInfo[0].metal_number}}</ion-card-subtitle>
       <ion-card-subtitle
         >Mobile : {{case.mobile_number}} 
         <span class="date">{{case.date | date:'short'}}</span></ion-card-subtitle
