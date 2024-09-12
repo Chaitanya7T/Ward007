@@ -1,0 +1,29 @@
+@import'../../assets/../theme/colors.scss';
+
+.login{
+  margin: 3em 1em;
+  .login-icon{
+    text-align: center;
+    margin: 20px 10px;
+    img{
+      width: 100px;
+    }
+  }
+  .form-fields{
+    margin: 10px 15px;
+    margin-bottom: 15px;
+  }
+  .forgot-password-text{
+    text-align: center;
+    font-size: 12px;
+    margin: 1em;
+    text-decoration: underline;
+    color:  var(--ion-color-primary);
+  }
+}
+.patternMatch{
+  color: var(--ion-color-primary);
+}
+.registerLabel{
+  text-align: center;
+}

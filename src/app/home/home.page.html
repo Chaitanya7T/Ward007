@@ -1,0 +1,24 @@
+<ion-header>
+  <app-header color="primary" [showMenu]="true">
+    <ion-back-button></ion-back-button>
+  </app-header>
+</ion-header>
+<ion-content class="ion-padding">
+  <app-logo> </app-logo>
+  <div class="action-buttons"> 
+  <ion-button color="primary" expand="block" (click)="createCase()">
+    New Case
+  </ion-button>
+</div>
+<div class="action-buttons">
+  <ion-button color="primary" expand="block" (click)="goToCases()">
+    Existing Cases
+  </ion-button>
+  </div>
+
+  <div class="action-buttons" *ngIf="userData && userData?.isAdmin">
+    <ion-button color="primary" expand="block" (click)="downloadCases()">
+      Download All Cases
+    </ion-button>
+    </div>
+</ion-content>

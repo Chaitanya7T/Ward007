@@ -1,0 +1,8 @@
+@import'../../../../assets/../theme/colors.scss';
+.padding {
+    padding-right: 20px;
+}
+
+.header-md::after {
+    background-image: none !important;
+}

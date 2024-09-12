@@ -1,0 +1,44 @@
+.form-fields{
+    margin-bottom: 20px;
+}
+.img-block{
+    display: flex;
+    .icon-trash{
+        color: red;
+        float: right;
+        font-size: 16px;
+        margin-bottom: -8px;
+        margin-right: -6px;
+        position: relative;
+        margin-top: -22px;
+        z-index: 9;
+        border-radius: 1px solid #fff;
+        background: #fff;
+    }
+    img{
+    height: 80px;
+    position: relative;
+    width: 100%;
+    margin-top: -22px;
+    }
+    p{
+        text-align: center;
+    }
+}
+
+.upload-image{
+    border: 1px solid black;
+    color: black;
+    height: 6em;
+    text-align: center;
+    margin: 2px;
+    padding: 3px;
+    font-size: 13px;
+    padding-top: 20px;
+    width: 25%;
+}
+.icon-trash{
+    margin-top: -5px;
+    margin-bottom: -13px;
+    margin-right: -7px;
+}

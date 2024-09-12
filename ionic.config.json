@@ -1,0 +1,7 @@
+{
+  "name": "unnati",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

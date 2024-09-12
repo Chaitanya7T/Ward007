@@ -1,0 +1,44 @@
+.img-DP{
+    object-fit: fill;
+    height: 250px;
+    margin: 10px;
+    border-radius: 6px;
+    box-shadow: 2px 4px 6px 2px #828080;
+    width: 50%;
+}
+
+.img-doc{
+    object-fit: fill;
+    height: 250px;
+    width: 50%;
+    margin: 10px;
+    border-radius: 6px;
+}
+
+.download-btn{
+    color: #3880ff;
+    font-size: 20px;
+    margin-bottom: -8px;
+    right: 100px;
+    position: absolute;
+    margin-top: -110px;
+    z-index: 9;
+    border-radius: 1px solid #fff;
+    background: #fff;
+    padding: 4px;
+    border-radius: 14px;
+}
+
+.download-btn-doc{
+    color: #3880ff;
+    font-size: 20px;
+    /* margin-bottom: -8px; */
+    right: 30px;
+    position: absolute;
+    margin-top: -105px;
+    z-index: 9;
+    border-radius: 1px solid #fff;
+    background: #fff;
+    padding: 4px;
+    border-radius: 14px;
+}

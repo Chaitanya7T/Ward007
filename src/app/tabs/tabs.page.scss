@@ -1,0 +1,38 @@
+@import'../../assets/../theme/colors.scss';
+
+
+.tab-selected{
+  border-bottom : 2px solid $white-color;
+  color: $theme-primary;
+}
+.tab-img{
+  max-width: 30px;
+}
+//   ion-tab-button:nth-child(3) {
+//    ion-icon {
+//     border-radius: 50%;
+//     border: 2px solid $white-color;
+//     padding: 5px;
+//     min-width: 30px;
+//     min-height: 30px;
+//     margin-top: 0px;
+//     color: $white-color;
+//    }
+//    .tab-selected{
+//     ion-icon {
+//     color: var(--ion-color-primary) !important;
+//     background: $white-color !important;
+//     }
+//    }
+//  }
+//  ion-tab-button:nth-child(3).tab-selected{
+//   ion-icon {
+//     color: var(--ion-color-primary) !important;
+//     background: $white-color !important;
+//    }
+//    border-bottom : none;
+// }
+ion-tab-bar{
+  --border: none;
+  color: #8a8989;
+}

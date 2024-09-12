@@ -1,0 +1,11 @@
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom" color="white">
+    <ion-tab-button tab="{{tab.path}}" *ngFor="let tab of tabs">
+      <!-- <img src="{{tab.icon}}" class="tab-img"> -->
+      <ion-icon name="{{tab.icon}}" class="tab-img"></ion-icon>
+      <ion-label>{{tab.name | translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>

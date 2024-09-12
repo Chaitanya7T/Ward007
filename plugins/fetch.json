@@ -1,0 +1,177 @@
+{
+  "cordova-plugin-whitelist": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-whitelist@^1.3.5"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-statusbar": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-statusbar@^2.4.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-device": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-device@^2.0.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-splashscreen": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-splashscreen@^5.0.4"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-ionic-webview": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic-webview@^4.2.1"
+    },
+    "is_top_level": true,
+    "variables": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+    }
+  },
+  "cordova-plugin-ionic-keyboard": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic-keyboard@^2.2.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-secure-storage-echo": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-secure-storage-echo@^5.1.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-inappbrowser": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-inappbrowser@^4.1.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-sqlite-2": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-sqlite-2@^1.0.7"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-file": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-file@^6.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-app-version": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-app-version@^0.1.12"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-network-information": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-network-information@^2.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-file-transfer": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-file-transfer@^1.7.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "ionic-plugin-deeplinks": {
+    "source": {
+      "type": "registry",
+      "id": "ionic-plugin-deeplinks@^1.0.22"
+    },
+    "is_top_level": true,
+    "variables": {
+      "URL_SCHEME": "unnati",
+      "DEEPLINK_SCHEME": "https",
+      "DEEPLINK_HOST": "shikshalokam.org",
+      "ANDROID_PATH_PREFIX": "/",
+      "ANDROID_2_PATH_PREFIX": "/",
+      "ANDROID_3_PATH_PREFIX": "/",
+      "ANDROID_4_PATH_PREFIX": "/",
+      "ANDROID_5_PATH_PREFIX": "/",
+      "DEEPLINK_2_SCHEME": " ",
+      "DEEPLINK_2_HOST": " ",
+      "DEEPLINK_3_SCHEME": " ",
+      "DEEPLINK_3_HOST": " ",
+      "DEEPLINK_4_SCHEME": " ",
+      "DEEPLINK_4_HOST": " ",
+      "DEEPLINK_5_SCHEME": " ",
+      "DEEPLINK_5_HOST": " "
+    }
+  },
+  "cordova-plugin-camera": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-camera@^4.1.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+"
+    }
+  },
+  "cordova-plugin-nativegeocoder": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-nativegeocoder@^3.4.1"
+    },
+    "is_top_level": true,
+    "variables": {
+      "LOCATION_WHEN_IN_USE_DESCRIPTION": "Use geocoder service"
+    }
+  },
+  "cordova-plugin-add-swift-support": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-add-swift-support@2.0.2"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-local-notification": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-local-notification@^0.9.0-beta.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-badge": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-badge@>=0.8.5"
+    },
+    "is_top_level": false,
+    "variables": {}
+  }
+}
